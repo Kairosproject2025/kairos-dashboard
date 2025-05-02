@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KAIROS Dashboard</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      background: #00ffcc;
+      border: none;
+      padding: 20px 40px;
+      margin: 15px;
+      font-size: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #00ffcc;
+      cursor: pointer;
+    }
+    #response {
+      margin-top: 30px;
+      font-size: 18px;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <h1>KAIROS Dashboard</h1>
+  <button onclick="callKairos('todo')">TODO</button>
+  <button onclick="callKairos('masterkey')">MASTERKEY</button>
+  <button onclick="callKairos('posso-agire')">POSSO AGIRE</button>
+  <button onclick="callKairos('aprimi-gli-occhi')">APRIMI GLI OCCHI</button>
+  <button onclick="callKairos('watchlist')">WATCHLIST</button>
+  <button onclick="callKairos('strategia')">STRATEGIA</button>
+  <p id="response"></p>
+
+  <script>
+    async function callKairos(command) {
+      try {
+        const res = await fetch(`/.netlify/functions/${command}`);
+        const data = await res.json();
+        document.getElementById('response').innerText = data.message;
+      } catch (err) {
+        document.getElementById('response').innerText = "Errore nella comunicazione con Kairos.";
+      }
+    }
+  </script>
+</body>
+</html>
