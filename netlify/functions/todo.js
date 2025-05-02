@@ -1,6 +1,9 @@
-export default async (req, res) => {
-  return res.json({
-    message: "TODO eseguito. Nessuna nuova istruzione operativa trovata. In attesa di segnale diretto."
-  });
+
+exports.handler = async function (event, context) {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: "TODO eseguito. Nessuna nuova azione"
+    })
+  };
 };
-Add todo.js function
