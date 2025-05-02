@@ -43,7 +43,7 @@
       try {
         const res = await fetch(`/.netlify/functions/${command}`);
         const data = await res.json();
-        document.getElementById('response').innerText = data.message;
+        document.getElementById('response').innerText = JSON.stringify(data, null, 2);
       } catch (err) {
         document.getElementById('response').innerText = "Errore nella comunicazione con Kairos.";
       }
